@@ -1,12 +1,39 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const CheckboxPrompt = require("inquirer/lib/prompts/checkbox");
+const licenses = [
+  {
+    name: "MIT",
+    url: "https://opensource.org/licenses/MIT",
+    id: "MIT"
+  },
+  {
+    name: "GNU General Public version 3",
+    url: "https://opensource.org/licenses/GPL-3.0",
+    id: "GPL-3.0-only"
+  },
+  {
+    name: "No License",
+    url: " ",
+    id: "NOLICENSE"
+  }
+];
 
 main();
+
+function printLicenseInfo ({licenseName}) {
+  const license = licenses.find(lic => lic.name ===licenseName)
+  console.log(license);
+  const badge = `[![License: GPL v3](https://img.shields.io/badge/License-${license.id}-blue.svg)](${license.url})`
+};
+
 function main() {
-  userInput().then((answers) => {
+  userInput()
+  .then((answers) => {
     const readMe = renderReadMe(answers);
     console.log(readMe);
+    printLicenseInfo();
+    
     fs.writeFile("readme.md", readMe, (error) => {
       if (error) {
         console.log(error);
@@ -15,6 +42,7 @@ function main() {
       }
     });
   });
+  //.catch((error) => console.log(console.log(error));
 }
 
 function userInput() {
@@ -58,8 +86,8 @@ function userInput() {
     {
       type: "list",
       message: "Choose a license.",
-      name: "license",
-      choices: ["Mozilla Public License 2.0", "The Perl License"],
+      name: "licenseName",
+      choices: licenses.map(license => license.name),
     },
 
     {
@@ -77,22 +105,14 @@ function userInput() {
   return inquirer.prompt(questions);
 }
 
-// const userData = {
-// 	"title": "demo",
-// 	"description": "easy",
-// 	"instructions": "install em",
-// 	"usageinfo": "use it",
-// 	"contribution": "thanks",
-// 	"test": "try it",
-// 	"license": "A",
-// 	"github": "disa",
-// 	"email": "disagmail"
-// };
+//prompt user to choose a license: MIT, GNU GPLv3 , no license
+//generate a badge 
+//console.log the badge with the correct link
+//console.log the selected license
 
-//const readMe = renderReadMe(userData);
-//console.log(readMe);
-//const licenseA = [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)";
-//const licenseB = [![License: Artistic-2.0](https://img.shields.io/badge/License-Perl-0298c3.svg)](https://opensource.org/licenses/Artistic-2.0)
+
+
+
 function renderReadMe({
   title,
   description,
@@ -100,24 +120,25 @@ function renderReadMe({
   usageinfo,
   contribution,
   test,
-  license,
+  licenseName,
   github,
   email,
+  badge,
 }) {
   return `
 # ${title}
 
 ## Description
 ${description}
-* ${license}
+* This project is license under ${licenseName}
 
 ## Table of Contents
-* [Installation](link)
-* [Usage Information](link)
-* [Contributions](link)
-* [Test Instructions](link)
-* [License Information](link)
-* [Questions/Contact](link)
+* [Installation](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#installation)
+* [Usage Information](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#usage)
+* [Contributions](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#contributing)
+* [Test Instructions](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#tests)
+* [License Information](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#license)
+* [Questions/Contact](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#questions)
 
 ## Installation
 * ${instructions}
@@ -132,7 +153,7 @@ ${contribution}
 ${test}
 
 ## License
-${license}
+${licenseName}
 
 ## Questions
 [github.com/${github}]

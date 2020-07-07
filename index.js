@@ -44,7 +44,6 @@ function main() {
       }
     });
   });
-  //.catch((error) => console.log(console.log(error));
 }
 
 function userInput() {
@@ -107,14 +106,6 @@ function userInput() {
   return inquirer.prompt(questions);
 }
 
-//prompt user to choose a license: MIT, GNU GPLv3 , no license
-//generate a badge 
-//console.log the badge with the correct link
-//console.log the selected license
-
-
-
-
 function renderReadMe({
   title,
   description,
@@ -132,7 +123,8 @@ function renderReadMe({
 
 ## Description
 ${description}
-* This project is license under ${licenseName}
+* This project is licensed under ${licenseName}
+${badge}
 
 ## Table of Contents
 * [Installation](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#installation)
@@ -157,9 +149,12 @@ ${test}
 ## License
 ${licenseName}
 
+Please click on the badge for more licensing information. 
 ${badge}
 
+
 ## Questions
+Please check out other repositories and applications on Github:
 [github.com/${github}]
 
 For additional information and/or questions, please email me:

@@ -5,34 +5,36 @@ const licenses = [
   {
     name: "MIT",
     url: "https://opensource.org/licenses/MIT",
-    id: "MIT"
+    id: "License-MIT-yellow"
   },
   {
     name: "GNU General Public version 3",
     url: "https://opensource.org/licenses/GPL-3.0",
-    id: "GPL-3.0-only"
+    id: "License-GPLv3-blue",
   },
   {
     name: "No License",
-    url: " ",
-    id: "NOLICENSE"
+    url: "http://unlicense.org/",
+    id: "license-Unlicense-blue"
   }
 ];
 
 main();
 
-function printLicenseInfo ({licenseName}) {
+function printLicenseInfo (licenseName) {
   const license = licenses.find(lic => lic.name ===licenseName)
   console.log(license);
-  const badge = `[![License: GPL v3](https://img.shields.io/badge/License-${license.id}-blue.svg)](${license.url})`
+  return `[![License: GPL v3](https://img.shields.io/badge/${license.id}.svg)](${license.url})`
 };
 
 function main() {
   userInput()
   .then((answers) => {
+    answers.badge = printLicenseInfo(answers.licenseName);
+
     const readMe = renderReadMe(answers);
     console.log(readMe);
-    printLicenseInfo();
+    
     
     fs.writeFile("readme.md", readMe, (error) => {
       if (error) {
@@ -154,6 +156,8 @@ ${test}
 
 ## License
 ${licenseName}
+
+${badge}
 
 ## Questions
 [github.com/${github}]

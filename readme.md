@@ -1,9 +1,10 @@
 
-# Oh yea
+# DEMO ReadMe
 
 ## Description
-flfd
-* Mozilla Public License 2.0
+This application will render a readme file from the command line.
+* This project is licensed under MIT
+[![License: GPL v3](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
 * [Installation](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#installation)
@@ -14,22 +15,27 @@ flfd
 * [Questions/Contact](https://github.com/mandisareed/cli-nodejs/blob/master/readme.md#questions)
 
 ## Installation
-* vfdad
+* Download necessary files.
 
 ## Usage
-vfad
+No limits on how many times this app is used. Previous readme will be written over.
 
 ## Contributing
-vfdafd
+Feel free to contribute, please name your sources.
 
 ## Tests
-fgfd
+Answers prompts and click on rendered readme file.
 
 ## License
-Mozilla Public License 2.0
+MIT
+
+Please click on the badge for more licensing information. 
+[![License: GPL v3](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Questions
+Please check out other repositories and applications on Github:
 [github.com/mandisareed]
 
 For additional information and/or questions, please email me:
-fdljfads
+mandisa.reed@gmail.com
